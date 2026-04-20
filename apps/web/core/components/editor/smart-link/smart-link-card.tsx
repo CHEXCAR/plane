@@ -28,36 +28,24 @@ type Props = {
   layout: "inline" | "block";
 };
 
-const CACHE = new Map<string, Metadata | "error" | "loading">();
-
 export function SmartLinkCard({ url, layout }: Props) {
   const [meta, setMeta] = useState<Metadata | null>(null);
   const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
 
   useEffect(() => {
     if (!url) return;
-    const cached = CACHE.get(url);
-    if (cached && cached !== "loading") {
-      if (cached === "error") setStatus("error");
-      else {
-        setMeta(cached);
-        setStatus("ok");
-      }
-      return;
-    }
-    CACHE.set(url, "loading");
+    setStatus("loading");
+    setMeta(null);
     let cancelled = false;
     fetch(`/_cira/link-metadata?url=${encodeURIComponent(url)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((d: Metadata) => {
         if (cancelled) return;
-        CACHE.set(url, d);
         setMeta(d);
         setStatus("ok");
       })
       .catch(() => {
         if (cancelled) return;
-        CACHE.set(url, "error");
         setStatus("error");
       });
     return () => {
