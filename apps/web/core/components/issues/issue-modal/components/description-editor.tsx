@@ -183,6 +183,7 @@ export const IssueDescriptionEditor = observer(function IssueDescriptionEditor(p
             render={({ field: { value, onChange } }) => (
               <RichTextEditor
                 editable
+                dragDropEnabled
                 id="issue-modal-editor"
                 initialValue={value ?? ""}
                 value={descriptionHtmlData}
