@@ -75,6 +75,9 @@ CUSTOM_TAGS = {
     "label",
     "input",
     "image-component",
+    # CHEXCAR: smart-link (Jira-style URL unfurl) editor node
+    "smart-link-card",
+    "issue-embed-component",
 }
 ALLOWED_TAGS = nh3.ALLOWED_TAGS | CUSTOM_TAGS
 
@@ -134,6 +137,15 @@ ATTRIBUTES = {
         "title",
     },
     "mention-component": {"id", "entity_identifier", "entity_name"},
+    # CHEXCAR smart-link
+    "smart-link-card": {"data-url", "data-layout"},
+    "issue-embed-component": {
+        "id",
+        "entity_identifier",
+        "entity_name",
+        "project_identifier",
+        "workspace_identifier",
+    },
     "th": {
         "colspan",
         "rowspan",
