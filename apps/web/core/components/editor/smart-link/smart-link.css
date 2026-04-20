@@ -5,15 +5,20 @@
   align-items: center;
   text-decoration: none;
   color: inherit;
-  border: 1px solid rgb(var(--color-border-200));
-  border-radius: 8px;
-  background: rgb(var(--color-background-90));
-  transition: background 0.15s, border-color 0.15s;
+  border: 1px solid rgb(var(--color-border-300));
+  border-radius: 10px;
+  background: rgb(var(--color-background-100));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.1s;
 }
 
 .smart-link:hover {
-  background: rgb(var(--color-background-80));
-  border-color: rgb(var(--color-border-300));
+  background: rgb(var(--color-background-90));
+  border-color: rgb(var(--color-border-400));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+.smart-link:active {
+  transform: translateY(1px);
 }
 
 .smart-link-favicon-img,
@@ -29,7 +34,7 @@
 
 /* Inline layout: pill */
 .smart-link-inline {
-  padding: 2px 8px;
+  padding: 3px 10px;
   gap: 6px;
   font-size: 0.875rem;
   max-width: 100%;
@@ -46,9 +51,9 @@
   flex-direction: row;
   width: 100%;
   max-width: 640px;
-  margin: 8px 0;
+  margin: 12px 0;
   overflow: hidden;
-  min-height: 92px;
+  min-height: 96px;
 }
 .smart-link-block .smart-link-body {
   flex: 1;
@@ -94,6 +99,7 @@
   width: 140px;
   flex-shrink: 0;
   background: rgb(var(--color-background-70));
+  border-left: 1px solid rgb(var(--color-border-200));
 }
 .smart-link-block .smart-link-image img {
   width: 100%;
