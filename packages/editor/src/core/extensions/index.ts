@@ -14,6 +14,7 @@ export * from "./mentions";
 export * from "./slash-commands";
 export * from "./table";
 export * from "./typography";
+export * from "./smart-link";
 export * from "./work-item-embed";
 export * from "./core-without-props";
 export * from "./custom-color";

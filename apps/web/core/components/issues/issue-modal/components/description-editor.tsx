@@ -21,6 +21,7 @@ import { getDescriptionPlaceholderI18n, getTabIndex } from "@plane/utils";
 // components
 import { GptAssistantPopover } from "@/components/core/modals/gpt-assistant-popover";
 import { RichTextEditor } from "@/components/editor/rich-text";
+import { SmartLinkCard } from "@/components/editor/smart-link";
 // helpers
 // hooks
 import { useEditorAsset } from "@/hooks/store/use-editor-asset";
@@ -184,6 +185,7 @@ export const IssueDescriptionEditor = observer(function IssueDescriptionEditor(p
               <RichTextEditor
                 editable
                 dragDropEnabled
+                smartLinkWidget={({ url, layout }) => <SmartLinkCard url={url} layout={layout} />}
                 id="issue-modal-editor"
                 initialValue={value ?? ""}
                 value={descriptionHtmlData}

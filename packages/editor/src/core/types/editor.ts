@@ -188,6 +188,7 @@ export type ILiteTextEditorProps = IEditorProps;
 
 export type IRichTextEditorProps = IEditorProps & {
   dragDropEnabled?: boolean;
+  smartLinkWidget?: (args: { url: string; layout: "inline" | "block" }) => React.ReactNode;
 };
 
 export type ICollaborativeDocumentEditorProps = Omit<IEditorProps, "initialValue" | "onEnterKeyPress" | "value"> & {

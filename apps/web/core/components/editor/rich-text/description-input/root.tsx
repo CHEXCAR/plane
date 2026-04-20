@@ -15,6 +15,7 @@ import type { EFileAssetType, TNameDescriptionLoader } from "@plane/types";
 import { getDescriptionPlaceholderI18n } from "@plane/utils";
 // components
 import { RichTextEditor } from "@/components/editor/rich-text";
+import { SmartLinkCard } from "@/components/editor/smart-link";
 // hooks
 import { useEditorAsset } from "@/hooks/store/use-editor-asset";
 import { useWorkspace } from "@/hooks/store/use-workspace";
@@ -242,6 +243,7 @@ export const DescriptionInput = observer(function DescriptionInput(props: Props)
           workspaceId={workspaceDetails.id}
           projectId={projectId}
           dragDropEnabled
+          smartLinkWidget={({ url, layout }) => <SmartLinkCard url={url} layout={layout} />}
           onChange={(description_json, description_html, options) => {
             if (description_html === lastSavedContent.current) return;
             setIsSubmitting("submitting");

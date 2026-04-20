@@ -9,7 +9,7 @@ import { forwardRef, useCallback } from "react";
 import { EditorWrapper } from "@/components/editors";
 import { BlockMenu, EditorBubbleMenu } from "@/components/menus";
 // extensions
-import { SideMenuExtension } from "@/extensions";
+import { SideMenuExtension, SmartLinkExtension } from "@/extensions";
 // plane editor imports
 import { RichTextEditorAdditionalExtensions } from "@/plane-editor/extensions/rich-text-extensions";
 // types
@@ -25,6 +25,7 @@ function RichTextEditor(props: IRichTextEditorProps) {
     flaggedExtensions,
     extendedEditorProps,
     workItemIdentifier,
+    smartLinkWidget,
   } = props;
 
   const getExtensions = useCallback(() => {
@@ -34,6 +35,9 @@ function RichTextEditor(props: IRichTextEditorProps) {
         aiEnabled: false,
         dragDropEnabled: !!dragDropEnabled,
       }),
+      ...(smartLinkWidget
+        ? [SmartLinkExtension({ widgetCallback: smartLinkWidget })]
+        : []),
       ...RichTextEditorAdditionalExtensions({
         disabledExtensions,
         fileHandler,
@@ -43,7 +47,7 @@ function RichTextEditor(props: IRichTextEditorProps) {
     ];
 
     return extensions;
-  }, [dragDropEnabled, disabledExtensions, externalExtensions, fileHandler, flaggedExtensions, extendedEditorProps]);
+  }, [dragDropEnabled, disabledExtensions, externalExtensions, fileHandler, flaggedExtensions, extendedEditorProps, smartLinkWidget]);
 
   return (
     <EditorWrapper {...props} extensions={getExtensions()}>

@@ -25,6 +25,7 @@ import { CustomQuoteExtension } from "./quote";
 import { CustomStarterKitExtension } from "./starter-kit";
 import { TableHeader, TableCell, TableRow, Table } from "./table";
 import { CustomTextAlignExtension } from "./text-align";
+import { SmartLinkExtensionConfig } from "./smart-link/extension-config";
 import { WorkItemEmbedExtensionConfig } from "./work-item-embed/extension-config";
 
 export const CoreEditorExtensionsWithoutProps = [
@@ -60,6 +61,7 @@ export const CoreEditorExtensionsWithoutProps = [
   CustomTextAlignExtension,
   CustomCalloutExtensionConfig,
   CustomColorExtension,
+  SmartLinkExtensionConfig,
   ...CoreEditorAdditionalExtensionsWithoutProps,
 ];
 
