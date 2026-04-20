@@ -15,6 +15,12 @@ type Metadata = {
   favicon: string | null;
   site_name: string | null;
   kind?: string;
+  author?: string | null;
+  oembed?: {
+    type?: string;
+    provider_name?: string;
+    author_name?: string;
+  };
 };
 
 type Props = {
@@ -92,27 +98,40 @@ export function SmartLinkCard({ url, layout }: Props) {
     );
   }
 
+  const isVideo = meta.oembed?.type === "video";
+  const byline = meta.author || meta.oembed?.author_name;
+
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="smart-link smart-link-block">
       <div className="smart-link-body">
         <div className="smart-link-site">
           {meta.favicon ? (
-            <img src={meta.favicon} alt="" className="smart-link-favicon-img" />
+            <img src={meta.favicon} alt="" className="smart-link-favicon-img" onError={onFaviconError} />
           ) : (
             <span className="smart-link-favicon" aria-hidden />
           )}
           <span className="smart-link-sitename">{meta.site_name || host}</span>
+          {byline ? <span className="smart-link-byline"> · {byline}</span> : null}
         </div>
         <div className="smart-link-title">{meta.title || host}</div>
         {meta.description ? <div className="smart-link-desc">{meta.description}</div> : null}
       </div>
       {meta.image ? (
         <div className="smart-link-image">
-          <img src={meta.image} alt="" loading="lazy" />
+          <img src={meta.image} alt="" loading="lazy" onError={onImageError} />
+          {isVideo ? <span className="smart-link-play" aria-hidden>▶</span> : null}
         </div>
       ) : null}
     </a>
   );
+}
+
+function onFaviconError(e: React.SyntheticEvent<HTMLImageElement>) {
+  (e.currentTarget as HTMLImageElement).style.display = "none";
+}
+function onImageError(e: React.SyntheticEvent<HTMLImageElement>) {
+  const wrap = (e.currentTarget as HTMLImageElement).parentElement;
+  if (wrap) wrap.style.display = "none";
 }
 
 function safeHost(u: string) {
