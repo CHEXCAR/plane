@@ -3,8 +3,8 @@
  * Added by CHEXCAR (not upstream).
  */
 export enum ESmartLinkAttributeNames {
-  URL = "data-url",
-  LAYOUT = "data-layout",
+  URL = "url",
+  LAYOUT = "layout",
 }
 
 export type TSmartLinkLayout = "inline" | "block";

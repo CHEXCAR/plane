@@ -20,7 +20,8 @@ export function SmartLinkExtension(props: Props) {
       return ReactNodeViewRenderer((nodeProps: NodeViewProps) => {
         const attrs = nodeProps.node.attrs as TSmartLinkAttributes;
         const url = attrs[ESmartLinkAttributeNames.URL] || "";
-        const layout = attrs[ESmartLinkAttributeNames.LAYOUT] || "block";
+        const layout = (attrs[ESmartLinkAttributeNames.LAYOUT] as "inline" | "block") || "block";
+        if (!url) return <NodeViewWrapper />;
         return (
           <NodeViewWrapper data-smart-link-url={url} data-smart-link-layout={layout}>
             {props.widgetCallback({ url, layout })}
