@@ -5,7 +5,8 @@ import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { ReactNodeViewRenderer, NodeViewWrapper } from "@tiptap/react";
 import type { NodeViewProps } from "@tiptap/react";
 import { SmartLinkExtensionConfig } from "./extension-config";
-import { ESmartLinkAttributeNames, TSmartLinkAttributes } from "./types";
+import { ESmartLinkAttributeNames } from "./types";
+import type { TSmartLinkAttributes } from "./types";
 
 type Props = {
   widgetCallback: (args: { url: string; layout: "inline" | "block" }) => React.ReactNode;
